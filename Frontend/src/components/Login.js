@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Error from './Error'
 import axios from "axios"
-import { API } from '../config'
+import { ApiUrl } from '../config'
 
 export default function Login ({ setUser, setStatus, setCurrUser }){
 
@@ -19,7 +19,7 @@ export default function Login ({ setUser, setStatus, setCurrUser }){
     function submit(e){
         e.preventDefault()
         if(is_valid()){
-             axios.post(`${API}/user/login/`, { userName, password }).then((response)=>{
+             axios.post(`${ApiUrl}/user/login/`, { userName, password }).then((response)=>{
                 response.data.admin? setUser("admin"): setUser("player")
                 setCurrUser(response.data)
                 setStatus("")

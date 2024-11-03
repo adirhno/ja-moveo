@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Error from '../components/Error'
 import axios from 'axios';
-import { API } from '../config'
+import { ApiUrl } from '../config'
 
 export default function AadminSignup ({ setStatus }){
 
@@ -18,8 +18,7 @@ export default function AadminSignup ({ setStatus }){
     function submit(e){
         e.preventDefault()
         if(is_valid()){
-            console.log("valid")
-            axios.post(`${API}/user/admin`, {userName, password, admin: true}).then((response)=>{
+            axios.post(`${ApiUrl}/user/admin`, {userName, password, admin: true}).then((response)=>{
                 setStatus("login")
             })
         }

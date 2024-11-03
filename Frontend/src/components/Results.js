@@ -7,11 +7,11 @@ import { FixedSizeList } from 'react-window';
 import { io } from 'socket.io-client';
 import axios from 'axios';
 import '../App.css';
-import { API } from '../config';
+import { ApiUrl } from '../config';
 
-const socket = io(API); 
-function handleSelect(selected, setLiveSong, setLive ){
-    axios.get(`${API}/song/lyrics/${selected.name}`).then((response)=>{
+const socket = io(ApiUrl); 
+function handleSelect(selected, setLive ){
+    axios.get(`${ApiUrl}/song/lyrics/${selected.name}`).then((response)=>{
       socket.emit('selectSong', response.data[0]);
         setLive(true)
     })
@@ -21,7 +21,7 @@ function renderRow({songs, setLiveSong, setLive, index, style}) {
 const song = songs[index];
   return (
     <ListItem style={style} key={index} component="div" disablePadding>
-      <ListItemButton onClick={()=>{handleSelect(song, setLiveSong, setLive)}}>
+      <ListItemButton onClick={()=>{handleSelect(song, setLive)}}>
         <ListItemText primary={`${index + 1}`} />
         <ListItemText primary={`${song.name}`} value={song.name}/>
         <ListItemText primary={`Author: ${song.author}`} />
@@ -30,7 +30,7 @@ const song = songs[index];
   );
 }
 
-export default function Results({songs, setLiveSong, setSongs, setLive}) {
+export default function Results({songs, setSongs, setLive}) {
 
   function handleBackButton() {
     setLive(false);
@@ -51,7 +51,7 @@ export default function Results({songs, setLiveSong, setSongs, setLive}) {
         itemCount={songs.length}
         overscanCount={5}
       >  
-        {({ index, style }) => renderRow({ index, style, songs, setLiveSong, setLive })}
+        {({ index, style }) => renderRow({ index, style, songs, setLive })}
       </FixedSizeList>
     </Box>
    </div>

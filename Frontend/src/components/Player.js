@@ -1,18 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
-import { API } from '../config';
+import { ApiUrl } from '../config';
 
-export default function Player ({liveSong, setLive}){
+export default function Player ({ setLive }){
     useEffect(() => {
-        const newSocket = io(API);
+        const newSocket = io(ApiUrl);
 
         // Listen for connection
         newSocket.on('connect', () => {
-            console.log("Socket ID:", newSocket.id); 
+            console.log("Socket connect:", newSocket.id); 
         });
         
         newSocket.on('songSelected',async (song) => {
-            console.log("back from socket", song);
             if(song){
                 setLive(true)
             } else{

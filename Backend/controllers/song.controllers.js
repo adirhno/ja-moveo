@@ -3,7 +3,6 @@ const Song = require("../models/Song");
 class SongController {
   async addSong(req, res) {
     const { name, song, author } = req.body;
-
     try {
         let newSong = new Song({ name, author, song })
         newSong.save()
@@ -34,7 +33,6 @@ class SongController {
     const { name } = req.params
     try {
       const song = await Song.find({ name: name });
-      console.log(song)
       res.status(200).json(song);
 
        

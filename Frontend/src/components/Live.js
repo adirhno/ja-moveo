@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
-import { API } from '../config'
+import { ApiUrl } from '../config'
 
 
-export default function Live({ liveSong, live, setLive, currUser, setLiveSong }) {
+export default function Live({ liveSong, live, setLive, currUser, setLiveSong, setSongs }) {
     const lines = useRef(null);
     const [scrolling, setScrolling] = useState(false);
     const [socket, setSocket] = useState(null); 
 
     useEffect(() => {
-        console.log(API)
-        const newSocket = io(API);
+        console.log(ApiUrl)
+        const newSocket = io(ApiUrl);
 
         newSocket.on('connect', () => {
             console.log("Socket connected"); 
@@ -18,7 +18,6 @@ export default function Live({ liveSong, live, setLive, currUser, setLiveSong })
         });
         
         newSocket.on('songSelected',async (song) => {
-            console.log("back from socket2", song);
             setSocket(newSocket)
             setLiveSong(song);
            
@@ -37,7 +36,7 @@ export default function Live({ liveSong, live, setLive, currUser, setLiveSong })
     
     function handleQuit() {
         socket.emit('quitSession'); 
-        setLive(false); 
+        setSongs([]); 
     }
 
     const startScrolling = () => {
@@ -63,7 +62,7 @@ export default function Live({ liveSong, live, setLive, currUser, setLiveSong })
             clearInterval(scrollInterval);
         };
     }, [scrolling]);
-    
+    console.log(liveSong)
     return (
       <>
         {socket && liveSong.song.length > 0?
@@ -75,12 +74,18 @@ export default function Live({ liveSong, live, setLive, currUser, setLiveSong })
         <div className='lines' ref={lines}>
             {liveSong.song.map((line, index) => (
                <p className='line' key={index}>
-               {line.map((word, idx) => (
+                {liveSong.lan == 'heb'? (line.map((word, idx) => (
                  <span className='lyrics' key={idx}>
                   {currUser.instrument == "singer"?<></>: <span className='chords'>{word.chords}</span>}
                    <span className='word'>{word.lyrics}</span>
                  </span>
-               ))}
+               )).reverse()):  (line.map((word, idx) => (
+                <span className='lyrics' key={idx}>
+                 {currUser.instrument == "singer"?<></>: <span className='chords'>{word.chords}</span>}
+                  <span className='word'>{word.lyrics}</span>
+                </span>
+              )))}
+             
              </p>
             ))}
         </div>

@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('quitSession', () => {
-        console.log('Admin has quit the session');
+        console.log('admin has quit the session');
         currentSong = null
         io.emit('quitSession'); 
     });

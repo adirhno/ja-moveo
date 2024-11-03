@@ -18,7 +18,7 @@ The project consists of two main directories:
 
 ## Installation
 
-#clone the repository to your local machine
+clone the repository to your local machine:
 
 ### Frontend
 
@@ -26,9 +26,12 @@ The project consists of two main directories:
 cd frontend
 npm install
 npm start
+bash ```
 
 ### Backend
+
 ```bash
 cd backend
 npm install
 node app.js
+bash ```

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
+import { API } from '../config'
 
 export default function Player({ setLive }) {
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3001");
+    const newSocket = io(API);
 
     // Listen for connection
     newSocket.on("connect", () => {

@@ -12,7 +12,7 @@ const server = http.createServer(app);
 const socketIo = require('socket.io');
 
 //Middlewares
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: 'https://ja-moveo-client.onrender.com/', credentials: true }));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
 
@@ -26,7 +26,7 @@ mongoose.connect( process.env.MONGODB_URI, { useNewUrlParser: true })
 let currentSong = null;
 const io = socketIo(server, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: 'https://ja-moveo-client.onrender.com/',
         methods: ['GET', 'POST'],
         credentials: true
     }

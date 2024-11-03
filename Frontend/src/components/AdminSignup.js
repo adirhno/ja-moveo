@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Error from '../components/Error'
 import axios from 'axios';
+import { API } from '../config'
 
 export default function AadminSignup ({ setStatus }){
 
@@ -18,7 +19,7 @@ export default function AadminSignup ({ setStatus }){
         e.preventDefault()
         if(is_valid()){
             console.log("valid")
-            axios.post('http://localhost:3001/user/admin', {userName, password, admin: true}).then((response)=>{
+            axios.post(`${API}/user/admin`, {userName, password, admin: true}).then((response)=>{
                 setStatus("login")
             })
         }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
+import { API } from '../config'
 
 
 export default function Live({ liveSong, live, user, setLive, currUser, setLiveSong }) {

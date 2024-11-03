@@ -1,4 +1,4 @@
-# Rehearsal Web Application
+# JaMoveo
 
 This project is a web application that allows users to log in from their phones and register as musicians, specifying their instrument. An admin user can create a rehearsal session, during which all participants can connect and view the song's chords and lyrics.
 

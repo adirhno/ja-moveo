@@ -12,10 +12,8 @@ import { API } from '../config'
 const socket = io(API); 
 function handleSelect(selected, setLive ){
     axios.get(`${API}/song/lyrics/${selected.name}`).then((response)=>{
-      setLive(true)
       socket.emit('selectSong', response.data[0]);
-      setSongs(response.data[0])
-       
+      setLive(true)
     })
 }
 

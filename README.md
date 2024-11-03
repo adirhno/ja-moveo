@@ -18,11 +18,17 @@ The project consists of two main directories:
 
 ## Installation
 
-### Frontend
+#clone the repository to your local machine
 
-To install and run the frontend application, navigate to the **Frontend** directory and run:
+### Frontend
 
 ```bash
 cd frontend
 npm install
 npm start
+
+### Backend
+```bash
+cd backend
+npm install
+node app.js

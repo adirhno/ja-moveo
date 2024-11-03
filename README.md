@@ -36,6 +36,6 @@ npm install
 node app.js
  ```
 
-Technologies Used
-+Frontend: React, Axios, Socket.io, Material-UI
-+Backend: Node.js, Express, MongoDB, Socket.io
+##Technologies Used
+*Frontend: React, Axios, Socket.io, Material-UI
+*Backend: Node.js, Express, MongoDB, Socket.io

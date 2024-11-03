@@ -12,8 +12,8 @@ This project is a web application that allows users to log in from their phones 
 
 ## Technologies Used
 
-* Frontend: React, Axios, Socket.io, Material-UI
-* Backend: Node.js, Express, MongoDB, Socket.io
+- **Frontend**: React, Axios, Socket.io, Material-UI
+- **Backend**: Node.js, Express, MongoDB, Socket.io
 
 
 ## Project Structure

@@ -30,7 +30,8 @@ The project consists of two main directories:
 
 ## Installation
 
-clone the repository to your local machine:
+- fork the repository to your github
+- clone the repository to your local machine
 
 ### Frontend
 

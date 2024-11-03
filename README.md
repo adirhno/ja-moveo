@@ -9,12 +9,20 @@ This project is a web application that allows users to log in from their phones 
 - Song selection and display based on user type (chords for musicians, lyrics for singers).
 - Search functionality for songs in English or Hebrew.
 
+
+## Technologies Used
+
+* Frontend: React, Axios, Socket.io, Material-UI
+* Backend: Node.js, Express, MongoDB, Socket.io
+
+
 ## Project Structure
 
 The project consists of two main directories:
 
 - **Frontend**: Contains the React application.
 - **Backend**: Contains the Node.js server.
+
 
 ## Installation
 
@@ -36,6 +44,4 @@ npm install
 node app.js
  ```
 
-##Technologies Used
-*Frontend: React, Axios, Socket.io, Material-UI
-*Backend: Node.js, Express, MongoDB, Socket.io
+

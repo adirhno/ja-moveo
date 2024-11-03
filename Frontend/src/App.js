@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
      {live ? (
-        <Live liveSong={liveSong} user={user} setLive={setLive} setSongs={setSongs} currUser={currUser}/>
+        <Live setLiveSong={setLiveSong} liveSong={liveSong} user={user} setLive={setLive} live={live} setSongs={setSongs} currUser={currUser}/>
     ) : (
         <>
             {status === "login" ? <Login setUser={setUser} setStatus={setStatus} setCurrUser={setCurrUser}/> : null}
@@ -31,7 +31,7 @@ function App() {
             {user === "admin" ? (
                 songs.length > 0 ? <Results setSongs={setSongs} setLive={setLive} setLiveSong={setLiveSong} songs={songs} /> : <Admin setSongs={setSongs} />
             ) : null}
-            {user === "player" ? <Player /> : null}
+            {user === "player"? (live ? <Live live={live} setLiveSong={setLiveSong} liveSong={liveSong} user={user} setLive={setLive} setSongs={setSongs} currUser={currUser}/> :<Player setLive={setLive}/>) : null}
         </>
     )}
     </div>

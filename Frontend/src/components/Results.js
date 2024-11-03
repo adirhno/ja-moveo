@@ -4,12 +4,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList } from 'react-window';
+import { io } from 'socket.io-client';
 import axios from 'axios';
 import '../App.css';
 
+const socket = io('http://localhost:3001'); 
 function handleSelect(selected, setLiveSong, setLive ){
     axios.get(`http://localhost:3001/song/lyrics/${selected.name}`).then((response)=>{
-        setLiveSong(response.data[0])
+      socket.emit('selectSong', response.data[0]);
         setLive(true)
     })
 }

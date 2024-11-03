@@ -1,14 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { io } from 'socket.io-client';
 
-export default function Live({ liveSong, user, setLive, setSongs, currUser }) {
+
+export default function Live({ liveSong, live, user, setLive, currUser, setLiveSong }) {
     const lines = useRef(null);
     const [scrolling, setScrolling] = useState(false);
+    const [socket, setSocket] = useState(null); 
 
-    console.log(liveSong)
+    useEffect(() => {
+        const newSocket = io('http://localhost:3001');
 
+        newSocket.on('connect', () => {
+            console.log("Socket connected:"); 
+        });
+        
+        newSocket.on('songSelected',async (song) => {
+            console.log("back from socket", song);
+            setSocket(newSocket)
+            setLiveSong(song);
+        });
+
+        newSocket.on('quitSession', () => {
+            console.log("admin quit the session");
+            setLive(false);
+        });
+
+        return () => {
+            newSocket.off('songSelected'); 
+            newSocket.disconnect(); 
+        };
+    }, []);
+    
     function handleQuit() {
-        setLive(false);
-        setSongs([]);
+        socket.emit('quitSession'); 
+        setLive(false); 
     }
 
     const startScrolling = () => {
@@ -35,33 +60,33 @@ export default function Live({ liveSong, user, setLive, setSongs, currUser }) {
         };
     }, [scrolling]);
 
-
     return (
       <>
-        <div className='liveSongTitle'><span>{liveSong.name}</span><span>{liveSong.author}</span></div>
-        <div className='live'>
-             {user === "admin" && (
-                    <button className='quitButton' onClick={handleQuit}>quit</button>
-                )}
-            <div className='lines' ref={lines}>
-                {liveSong.song.map((line, index) => (
-                   <p className='line' key={index}>
-                   {line.map((word, idx) => (
-                     <span className='lyrics' key={idx}>
-                      {currUser.instrument == "singer"?<></>: <span className='chords'>{word.chords}</span>}
-                       <span className='word'>{word.lyrics}</span>
-                     </span>
-                   ))}
-                 </p>
-                ))}
-            </div>
-            <button
-            className={`scrollButton ${scrolling ? 'scrolling' : 'not-scrolling'}`}
-            onClick={scrolling ? stopScrolling : startScrolling}
-            >
-                {scrolling ? 'Stop Scrolling' : 'Start Scrolling'}
-            </button>
+        {socket && liveSong.song.length > 0?
+         <div className='live'>
+            <div className='liveSongTitle'><span>{liveSong.name}</span><span>{liveSong.author}</span></div>
+         {user === "admin" && (
+                <button className='quitButton' onClick={handleQuit}>quit</button>
+            )}
+        <div className='lines' ref={lines}>
+            {liveSong.song.map((line, index) => (
+               <p className='line' key={index}>
+               {line.map((word, idx) => (
+                 <span className='lyrics' key={idx}>
+                  {currUser.instrument == "singer"?<></>: <span className='chords'>{word.chords}</span>}
+                   <span className='word'>{word.lyrics}</span>
+                 </span>
+               ))}
+             </p>
+            ))}
         </div>
+        <button
+        className={`scrollButton ${scrolling ? 'scrolling' : 'not-scrolling'}`}
+        onClick={scrolling ? stopScrolling : startScrolling}
+        >
+            {scrolling ? 'Stop Scrolling' : 'Start Scrolling'}
+        </button>
+    </div>:<></>}
       </>
     );
 }

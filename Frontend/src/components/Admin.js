@@ -6,15 +6,15 @@ export default function Admin({setSongs}) {
   const [song, setSong] = useState("");
   const [error, setError] = useState(false);
 
-  function handleSearch() {
+  function handleSearch () {
     axios.get(`http://localhost:3001/song/${song}`).then((response)=>{
-        setSongs(response.data)
-    }).catch((error) => {
-      if (error.status == 404) {
-        setError(true);
-      }
-    });
-  }
+      setSongs(response.data)
+  }).catch((error) => {
+    if (error.status == 404) {
+      setError(true);
+    }
+  });
+  };
 
   return <div className="admin">
             <h1>Search any song...</h1>

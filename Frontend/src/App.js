@@ -9,8 +9,6 @@ import AdminSignup from './components/AdminSignup';
 import { useState } from 'react';
 
 
-
-
 function App() {
   const [ user, setUser ] = useState("")
   const [ admin, setAdmin ] = useState(false)
@@ -29,7 +27,7 @@ function App() {
             {status === "login" ? <Login setUser={setUser} setStatus={setStatus} setCurrUser={setCurrUser}/> : null}
             {status === "signup" ? (admin ? <AdminSignup /> : <Signup setStatus={setStatus} />) : null}
             {user === "admin" ? (
-                songs.length > 0 ? <Results setSongs={setSongs} setLive={setLive} setLiveSong={setLiveSong} songs={songs} /> : <Admin setSongs={setSongs} />
+                songs.length > 0 ? <Results setSongs={setSongs} live={live} setLive={setLive} setLiveSong={setLiveSong} songs={songs} /> : <Admin setSongs={setSongs} />
             ) : null}
             {user === "player"? (live ? <Live live={live} setLiveSong={setLiveSong} liveSong={liveSong} user={user} setLive={setLive} setSongs={setSongs} currUser={currUser}/> :<Player setLive={setLive}/>) : null}
         </>

@@ -3,22 +3,25 @@ import { io } from 'socket.io-client';
 import { API } from '../config'
 
 
-export default function Live({ liveSong, live, user, setLive, currUser, setLiveSong }) {
+export default function Live({ liveSong, live, setLive, currUser, setLiveSong }) {
     const lines = useRef(null);
     const [scrolling, setScrolling] = useState(false);
     const [socket, setSocket] = useState(null); 
 
     useEffect(() => {
-        const newSocket = io('http://localhost:3001');
+        console.log(API)
+        const newSocket = io(API);
 
         newSocket.on('connect', () => {
-            console.log("Socket connected:"); 
+            console.log("Socket connected"); 
+            setLive(true)
         });
         
         newSocket.on('songSelected',async (song) => {
-            console.log("back from socket", song);
+            console.log("back from socket2", song);
             setSocket(newSocket)
             setLiveSong(song);
+           
         });
 
         newSocket.on('quitSession', () => {
@@ -30,7 +33,7 @@ export default function Live({ liveSong, live, user, setLive, currUser, setLiveS
             newSocket.off('songSelected'); 
             newSocket.disconnect(); 
         };
-    }, []);
+    }, [live]);
     
     function handleQuit() {
         socket.emit('quitSession'); 
@@ -60,15 +63,15 @@ export default function Live({ liveSong, live, user, setLive, currUser, setLiveS
             clearInterval(scrollInterval);
         };
     }, [scrolling]);
-
+    
     return (
       <>
         {socket && liveSong.song.length > 0?
          <div className='live'>
             <div className='liveSongTitle'><span>{liveSong.name}</span><span>{liveSong.author}</span></div>
-         {user === "admin" && (
-                <button className='quitButton' onClick={handleQuit}>quit</button>
-            )}
+         {currUser.admin ?
+                <button className='quitButton' onClick={handleQuit}>quit</button>:<></>
+            }
         <div className='lines' ref={lines}>
             {liveSong.song.map((line, index) => (
                <p className='line' key={index}>

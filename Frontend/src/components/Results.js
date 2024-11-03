@@ -7,17 +7,17 @@ import { FixedSizeList } from 'react-window';
 import { io } from 'socket.io-client';
 import axios from 'axios';
 import '../App.css';
-import { API } from '../config'
+import { API } from '../config';
 
 const socket = io(API); 
-function handleSelect(selected, setLive ){
+function handleSelect(selected, setLiveSong, setLive ){
     axios.get(`${API}/song/lyrics/${selected.name}`).then((response)=>{
       socket.emit('selectSong', response.data[0]);
-      setLive(true)
+        setLive(true)
     })
 }
 
-function renderRow({ songs, setLiveSong, setLive, index, style }) {
+function renderRow({songs, setLiveSong, setLive, index, style}) {
 const song = songs[index];
   return (
     <ListItem style={style} key={index} component="div" disablePadding>

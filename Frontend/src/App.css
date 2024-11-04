@@ -4,7 +4,10 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color:rgb(215, 206, 198);
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  font-family: "Arial", sans-serif;
 }
 
 fieldset {
@@ -70,8 +73,7 @@ button {
   cursor: pointer;
 }
 
-
-.quitButton{
+.quitButton {
   position: fixed;
   top: 40px;
   right: 20px;
@@ -91,67 +93,82 @@ button[disabled] {
   cursor: not-allowed;
 }
 
-.admin{
-  margin-bottom: 300px;
-  padding:10px;
+.admin {
+  font-size: 26px;
+  font-weight: bold;
+  color: #424243;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.searchInput{
+.searchInput {
   margin: 10px;
 }
 
-.buttons{
+.buttons {
   flex-direction: row;
 }
 
 .live {
+  padding: 20px;
+  text-align: center;
   width: 85%;
-  height: 18vh; 
-  margin: 0 auto; 
-  overflow: hidden; 
+  height: 16vh;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
- .lines{
-  overflow-y: auto; 
-  height: 100%; 
-  padding: 10px; 
-  border: 1px solid #ccc; 
-  background-color: #000; 
-  color: #fff; 
-  font-size: 24px; 
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
-  line-height: 1.5; 
+.player {
+  font-size: 28px;
+  font-weight: bold;
+  color: #424243;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.lines {
+  overflow-y: auto;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #000;
+  color: #fff;
+  font-size: 24px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  line-height: 1.5;
   border-radius: 6px;
 }
 
-.line{
+.line {
   display: flex;
   justify-content: space-around;
   padding: 0;
   font-size: 40px;
   color: rgb(255, 94, 0);
-   transition: opacity 1s ease; /* Transition for opacity */
-    opacity: 1; /* Start fully visible */
+  transition: opacity 1s ease;
+  opacity: 1;
 }
 .lyrics {
-  display: inline-block; 
-  position: relative; 
-  margin-right: 5px; 
+  display: inline-block;
+  position: relative;
+  margin-right: 5px;
   margin-bottom: 11px;
 }
 
 .chords {
   position: absolute;
-  transform: translateY(-1.5em); 
-  font-size: 0.8em; 
-  color: rgb(17, 228, 70); 
-  left: 0; 
+  transform: translateY(-1.5em);
+  font-size: 0.8em;
+  color: rgb(17, 228, 70);
+  left: 0;
 }
 .word {
-  display: inline; 
+  display: inline;
 }
 
-.scrollButton{
+.scrollButton {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -170,7 +187,8 @@ button[disabled] {
   background-color: rgb(87, 205, 87);
 }
 
-.liveSongTitle{
+.liveSongTitle {
+  margin-bottom: 10px;
   position: fixed;
   top: 95px;
   left: 100px;
@@ -181,20 +199,22 @@ button[disabled] {
   display: flex;
   justify-content: space-around;
   font-weight: bold;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
-.results{
-  font-size: 12px !important;
-  color: #7d0d0d;
+.results {
+  font-size: 22px !important;
+  font-weight: bold;
+  color: #333 !important;
   font-weight: bold !important;
+  border-radius: 10px;
 }
 div.results {
-  font-size: 25px; /* More specific */
+  font-size: 25px;
   font-weight: bold !important;
 }
 
-.results-back{
+.results-back {
   position: fixed;
   top: 40px;
   right: 20px;

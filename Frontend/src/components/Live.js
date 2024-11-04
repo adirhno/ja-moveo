@@ -67,7 +67,7 @@ export default function Live({ liveSong, live, setLive, currUser, setLiveSong, s
       <>
         {socket && liveSong.song.length > 0?
          <div className='live'>
-            <div className='liveSongTitle'><span>{liveSong.name}</span><span>{liveSong.author}</span></div>
+            <div className='liveSongTitle'><span>{liveSong.name}</span><span>{liveSong.artist}</span></div>
          {currUser.admin ?
                 <button className='quitButton' onClick={handleQuit}>quit</button>:<></>
             }

@@ -4,7 +4,6 @@ import axios from 'axios';
 import { ApiUrl } from '../config'
 
 export default function AadminSignup ({ setStatus }){
-
     const [ userName, setUserName ] = useState("")
     const [ password, setPassword ] = useState("")
 

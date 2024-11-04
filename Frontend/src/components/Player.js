@@ -5,10 +5,8 @@ import { ApiUrl } from '../config';
 export default function Player ({ setLive }){
     useEffect(() => {
         const newSocket = io(ApiUrl);
-
-        // Listen for connection
         newSocket.on('connect', () => {
-            console.log("Socket connect:", newSocket.id); 
+            console.log("Socket connected:", newSocket.id); 
         });
         
         newSocket.on('songSelected',async (song) => {
@@ -28,7 +26,7 @@ export default function Player ({ setLive }){
 
 
     return (
-        <div > 
+        <div className='player'> 
         <h1>
         Waiting for next song...
         </h1>

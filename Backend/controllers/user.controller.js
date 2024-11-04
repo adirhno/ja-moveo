@@ -1,7 +1,6 @@
 
 
 const User = require("../models/User.js");
-const Admin = require("../models/Admin.js");
 const passwordValidator = require("password-validator");
 const passwordValidatorSchema = new passwordValidator();
 
@@ -34,7 +33,7 @@ class UserController {
         // const salt = bcrypt.genSaltSync(saltRounds);
         // const hashedPassword = bcrypt.hashSync(newPassword, salt);
 		try {
-            let newAdmin = new Admin({ userName, password, admin });
+            let newAdmin = new User({ userName, password, admin });
             newAdmin.save()
             res.sendStatus(200);
             

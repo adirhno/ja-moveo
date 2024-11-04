@@ -4,7 +4,6 @@ import axios from "axios"
 import { ApiUrl } from '../config'
 
 export default function Login ({ setUser, setStatus, setCurrUser }){
-
     const [ userName, setUserName ] = useState("")
     const [ password, setPassword ] = useState("")
     const [auth, setAuth ] = useState(true)

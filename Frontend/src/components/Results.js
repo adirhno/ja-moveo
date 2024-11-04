@@ -17,14 +17,21 @@ function handleSelect(selected, setLive ){
     })
 }
 
-function renderRow({songs, setLiveSong, setLive, index, style}) {
+function renderRow({songs, setLive, index, style}) {
 const song = songs[index];
   return (
     <ListItem style={style} key={index} component="div" disablePadding>
       <ListItemButton onClick={()=>{handleSelect(song, setLive)}}>
-        <ListItemText primary={`${index + 1}`} />
+      <ListItemText primary={
+        song.image ? (
+            <img src={song.image} alt={song.name}  />
+        ) : (
+            <span>No image available</span>
+        )
+    } />
+        <ListItemText primary={`${index + 1}.`} />
         <ListItemText primary={`${song.name}`} value={song.name}/>
-        <ListItemText primary={`Author: ${song.author}`} />
+        <ListItemText primary={`Artist: ${song.artist}`} />
       </ListItemButton>
     </ListItem>
   );
